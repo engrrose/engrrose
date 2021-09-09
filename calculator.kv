@@ -1,0 +1,205 @@
+<CustButton@Button>:
+    font_size: 32
+
+# Define id so I can refer to the CalcGridLayout
+# class functions
+# Display points to the entry widget
+<CalcGridLayout>:
+
+    id: calculator
+    display: entry
+    rows: 6
+    padding: 10
+    spacing: 10
+
+
+    # Where input is displayed
+    BoxLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'Erovoutika_try.jpg'
+        padding: 5
+
+        TextInput:
+            id: entry
+            font_size: 60
+            text_center: True
+            font_name:  "Comic-Sans"
+            foreground_color: (75/255, 5/255, 89/255)
+            multiline: False
+            background_color: 0,0,0,0
+
+    # When buttons are pressed update the entry
+    BoxLayout:
+        spacing: 10
+        CustButton:
+            text: "1"
+            on_press:
+                entry.text += self.text
+            background_color: 0,0,0,0
+            Image:
+                id: my_image
+                source: 'Pictures/one.png' if self.parent.state=="normal" else 'Pictures/one_invert.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+        CustButton:
+            text: "2"
+            on_press: entry.text += self.text
+            background_color: 0,0,0,0
+            Image:
+                source: 'Pictures/two.png' if self.parent.state=="normal" else 'Pictures/two_invert.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+        CustButton:
+            text: "3"
+            color: 1,0,1,1
+            on_press: entry.text += self.text
+            background_color: 0,0,0,0
+            Image:
+                source: 'Pictures/three.png' if self.parent.state=="normal" else 'Pictures/three_invert.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+        CustButton:
+            text: "+"
+            on_press: entry.text += self.text
+            background_color: 0,0,0,0
+            Image:
+                source: 'Pictures/add.png' if self.parent.state=="normal" else 'Pictures/add_invert.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+    BoxLayout:
+        spacing: 10
+        CustButton:
+            text: "4"
+            on_press: entry.text += self.text
+            background_color: 0,0,0,0
+            Image:
+                source: 'Pictures/four.png' if self.parent.state=="normal" else 'Pictures/four_invert.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+        CustButton:
+            text: "5"
+            on_press: entry.text += self.text
+            background_color: 0,0,0,0
+            Image:
+                source: 'Pictures/five.png' if self.parent.state=="normal" else 'Pictures/five_invert.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+        CustButton:
+            text: "6"
+            on_press: entry.text += self.text
+            background_color: 0,0,0,0
+            Image:
+                source: 'Pictures/six.png' if self.parent.state=="normal" else 'Pictures/six_invert.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+        CustButton:
+            text: "-"
+            background_color: 0,0,0,0
+            on_press: entry.text += self.text
+            Image:
+                source: 'Pictures/minus.png' if self.parent.state=="normal" else 'Pictures/minus_invert.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+
+
+    BoxLayout:
+        spacing: 10
+        CustButton:
+            text: "7"
+            background_color: 0,0,0,0
+            on_press: entry.text += self.text
+            Image:
+                source: 'Pictures/seven.png' if self.parent.state=="normal" else 'Pictures/seven_invert.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+
+        CustButton:
+            text: "8"
+            background_color: 0,0,0,0
+            on_press: entry.text += self.text
+            Image:
+                source: "Pictures/eight.PNG"  if self.parent.state=="normal" else 'Pictures/eight_invert.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+        CustButton:
+            text: "9"
+            background_color: 0,0,0,0
+            on_press: entry.text += self.text
+            Image:
+                source: "Pictures/nine.PNG"  if self.parent.state=="normal" else 'Pictures/nine_invert.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+        CustButton:
+            text: "*"
+            background_color: 0,0,0,0
+            on_press: entry.text += self.text
+            Image:
+                source: "Pictures/multiply.png"  if self.parent.state=="normal" else 'Pictures/multiply_invert.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+
+    # When equals is pressed pass text in the entry
+    # to the calculate function
+    BoxLayout:
+        spacing: 10
+        CustButton:
+            id: AC
+            text: "AC"
+            background_color: 0,0,0,0
+            on_press: entry.text = ""
+            Image:
+                source: "Pictures/AC.jpg"  if self.parent.state=="normal" else 'Pictures/AC_invert.jpg'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+        CustButton:
+            text: "0"
+            background_color: 0,0,0,0
+            on_press: entry.text += self.text
+            Image:
+                source: "Pictures/zero.PNG"  if self.parent.state=="normal" else 'Pictures/zero_invert.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+
+        CustButton:
+            text: "="
+            background_color: 0,0,0,0
+            on_press: calculator.calculate(entry.text)
+            Image:
+                source: "Pictures/equal.PNG"  if self.parent.state=="normal" else 'Pictures/equal_invert.PNG'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+
+        CustButton:
+            text: "/"
+            background_color: 0,0,0,0
+            on_press: entry.text += self.text
+            Image:
+                source: "Pictures/divide.PNG"  if self.parent.state=="normal" else 'Pictures/divide_invert.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+    BoxLayout:
+        CustButton:
+            font_size: 20
+            text: "Scientific calculator"
+            background_color: 0,0,0,0
+            on_press: entry.text = "Subscribe to ERovoutika"
+            on_release: entry.text = ""
